@@ -299,15 +299,13 @@
 
 
 
-<!-- Youtube video -->
+<!-- Youtube video
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
-      <!-- Paper video. -->
       <h2 class="title is-3">Video Summary</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          
           <div class="publication-video">
             <iframe src="https://www.youtube.com/embed/5ZlR7NS-O3E" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
@@ -316,6 +314,7 @@
     </div>
   </div>
 </section>
+-->
 
 <!-- Paper abstract -->
 <section class="section hero is-light">
@@ -326,7 +325,31 @@
         <div class="content has-text-justified">
           <!-- TODO: Replace with your paper abstract -->
           <p>
-            This paper presents a motion planning framework that unifies equality and inequality constraints into a single geometric formulation for sampling-based planning in high-dimensional robotic systems. Conventional sampling-based planners often exhibit inefficient exploration because they treat constraints separately: equality constraints via projection and inequality constraints via binary collision checking. To address this issue, we propose Riemannian Barrier Metric RRT (RMRRT), which unifies both constraints into a single geometric formulation. RMRRT constructs a Riemannian barrier metric on the tangent space of the equality manifold by integrating the null-space projection of the constraint Jacobian with the Hessian of a logarithmic barrier function. This metric guides the tree expansion by selecting steering directions that minimize the induced Riemannian norm, thereby naturally avoiding inequality constraints while strictly adhering to the equality manifold. Experimental results demonstrate that RMRRT achieves a 100% success rate across diverse constrained manipulation tasks in both simulation and real-world experiments, while reducing planning time relative to state-of-the-art constrained planners. Ablation studies further show that the proposed barrier metric reduces sample rejection and shortens path length. Experiment videos and source code are available at: https://rmrrt-anonymous.github.io
+            This paper presents a motion planning framework
+            that unifies equality and inequality constraints within a single
+            geometric formulation for sampling-based planning in high-
+            dimensional robotic systems. In conventional sampling-based
+            planners, equality constraints are typically enforced through
+            projection, whereas inequality constraints are handled separately
+            through binary validity checks such as collision testing, often
+            leading to inefficient exploration. To address this limitation,
+            we propose Riemannian Barrier Metric RRT (RMRRT), which
+            constructs a unified local geometry for planning on equality-
+            constrained manifolds. RMRRT first builds an ambient barrier
+            metric from inequality-sensitive barrier terms and then induces
+            a tangent-space metric via a G-orthogonal projection associated
+            with the equality constraints. The resulting tangent-space metric is
+            used consistently in both steering and nearest-neighbor selection,
+            biasing exploration away from nearby inequality boundaries
+            while preserving first-order equality consistency. Experimental
+            results show that RMRRT achieves a 100% success rate across
+            diverse constrained manipulation tasks in both simulation and
+            real-world settings, while reducing planning time relative to
+            representative constrained planning baselines. Ablation studies
+            further demonstrate that the proposed metric improves explo-
+            ration quality by reducing rejected samples and shortening path
+            length. Experiment videos and source code are available at:
+            https://rmrrt-anonymous.github.io
           </p>
         </div>
       </div>
@@ -373,90 +396,143 @@
       <table class="table is-bordered is-striped is-hoverable is-fullwidth">
         <thead>
           <tr>
-            <th>Planner</th>
-            <th colspan="2" class="has-text-centered">Scenario 1</th>
-            <th colspan="2" class="has-text-centered">Scenario 2</th>
-            <th colspan="2" class="has-text-centered">Scenario 3</th>
-            <th colspan="2" class="has-text-centered">Scenario 4</th>
+            <th rowspan="2">Planner</th>
+            <th colspan="3" class="has-text-centered">Scenario 1</th>
+            <th colspan="3" class="has-text-centered">Scenario 2</th>
+            <th colspan="3" class="has-text-centered">Scenario 3</th>
+            <th colspan="3" class="has-text-centered">Scenario 4</th>
           </tr>
           <tr>
-            <th></th>
             <th class="has-text-centered">Time (s)</th>
-            <th class="has-text-centered">Succ.</th>
+            <th class="has-text-centered">Succ. (%)</th>
+            <th class="has-text-centered">Path Len.</th>
+      
             <th class="has-text-centered">Time (s)</th>
-            <th class="has-text-centered">Succ.</th>
+            <th class="has-text-centered">Succ. (%)</th>
+            <th class="has-text-centered">Path Len.</th>
+      
             <th class="has-text-centered">Time (s)</th>
-            <th class="has-text-centered">Succ.</th>
+            <th class="has-text-centered">Succ. (%)</th>
+            <th class="has-text-centered">Path Len.</th>
+      
             <th class="has-text-centered">Time (s)</th>
-            <th class="has-text-centered">Succ.</th>
+            <th class="has-text-centered">Succ. (%)</th>
+            <th class="has-text-centered">Path Len.</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>CBiRRT</td>
-            <td class="has-text-centered">0.35 &pm; 0.41</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">2.97 &pm; 4.48</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">3.06 &pm; 4.27</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">74.75 &pm; 118.59</td>
-            <td class="has-text-centered">90%</td>
+            <td class="has-text-centered">0.36 &plusmn; 0.54</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">8.54 &plusmn; 3.68</td>
+      
+            <td class="has-text-centered">2.97 &plusmn; 4.48</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">9.07 &plusmn; 2.75</td>
+      
+            <td class="has-text-centered">4.58 &plusmn; 9.20</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">9.53 &plusmn; 2.78</td>
+      
+            <td class="has-text-centered">74.75 &plusmn; 118.59</td>
+            <td class="has-text-centered">90</td>
+            <td class="has-text-centered">10.67 &plusmn; 2.49</td>
           </tr>
+      
           <tr>
             <td>Atlas RRT</td>
-            <td class="has-text-centered">5.84 &pm; 12.63</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">48.55 &pm; 85.13</td>
-            <td class="has-text-centered">83%</td>
-            <td class="has-text-centered">35.12 &pm; 69.27</td>
-            <td class="has-text-centered">89%</td>
-            <td class="has-text-centered">10.02 &pm; 31.80</td>
-            <td class="has-text-centered">89%</td>
+            <td class="has-text-centered">1.04 &plusmn; 2.65</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">7.45 &plusmn; 3.08</td>
+      
+            <td class="has-text-centered">3.87 &plusmn; 6.34</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">9.87 &plusmn; 3.22</td>
+      
+            <td class="has-text-centered">5.71 &plusmn; 9.27</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">9.56 &plusmn; 3.23</td>
+      
+            <td class="has-text-centered">42.11 &plusmn; 105.49</td>
+            <td class="has-text-centered">92</td>
+            <td class="has-text-centered">10.54 &plusmn; 3.64</td>
           </tr>
+      
           <tr>
-            <td>TB-RRT</td>
-            <td class="has-text-centered">5.74 &pm; 16.75</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">37.71 &pm; 86.93</td>
-            <td class="has-text-centered">80%</td>
-            <td class="has-text-centered">48.83 &pm; 86.27</td>
-            <td class="has-text-centered">87%</td>
-            <td class="has-text-centered">15.80 &pm; 57.35</td>
-            <td class="has-text-centered">84%</td>
+            <td>Tangent Bundle RRT</td>
+            <td class="has-text-centered">0.87 &plusmn; 3.34</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">9.12 &plusmn; 3.05</td>
+      
+            <td class="has-text-centered">3.03 &plusmn; 4.32</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">9.61 &plusmn; 3.83</td>
+      
+            <td class="has-text-centered">4.94 &plusmn; 10.11</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">9.80 &plusmn; 7.35</td>
+      
+            <td class="has-text-centered">15.80 &plusmn; 57.35</td>
+            <td class="has-text-centered">87</td>
+            <td class="has-text-centered">11.01 &plusmn; 3.89</td>
           </tr>
+      
           <tr>
-            <td>PG-RRT</td>
-            <td class="has-text-centered">2.65 &pm; 6.64</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">4.49 &pm; 5.43</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">5.51 &pm; 10.41</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">32.37 &pm; 81.47</td>
-            <td class="has-text-centered">97%</td>
+            <td>Precomputed Graph RRT</td>
+            <td class="has-text-centered">0.42 &plusmn; 0.69</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">8.89 &plusmn; 3.79</td>
+      
+            <td class="has-text-centered">2.72 &plusmn; 3.67</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">9.06 &plusmn; 2.62</td>
+      
+            <td class="has-text-centered">2.07 &plusmn; 3.29</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">9.51 &plusmn; 2.80</td>
+      
+            <td class="has-text-centered">13.34 &plusmn; 35.11</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">11.41 &plusmn; 35.11</td>
           </tr>
+      
           <tr>
             <td>LJCMP</td>
-            <td class="has-text-centered">0.41 &pm; 1.02</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">0.24 &pm; 0.53</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">0.48 &pm; 1.56</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">0.55 &pm; 1.69</td>
-            <td class="has-text-centered">100%</td>
+            <td class="has-text-centered">1.17 &plusmn; 3.30</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">12.45 &plusmn; 4.71</td>
+      
+            <td class="has-text-centered">0.28 &plusmn; 0.65</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">11.97 &plusmn; 4.45</td>
+      
+            <td class="has-text-centered">0.48 &plusmn; 1.56</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">12.31 &plusmn; 3.34</td>
+      
+            <td class="has-text-centered">0.55 &plusmn; 1.69</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">16.44 &plusmn; 5.65</td>
           </tr>
+      
           <tr style="background-color:#e8f5e9; font-weight:bold;">
             <td>RMRRT (ours)</td>
-            <td class="has-text-centered">0.32 &pm; 0.34</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">0.18 &pm; 0.15</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">0.25 &pm; 0.26</td>
-            <td class="has-text-centered">100%</td>
-            <td class="has-text-centered">0.38 &pm; 0.51</td>
-            <td class="has-text-centered">100%</td>
+            <td class="has-text-centered">0.09 &plusmn; 0.14</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">8.05 &plusmn; 3.33</td>
+      
+            <td class="has-text-centered">0.23 &plusmn; 0.31</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">10.92 &plusmn; 4.86</td>
+      
+            <td class="has-text-centered">0.25 &plusmn; 0.26</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">12.63 &plusmn; 8.17</td>
+      
+            <td class="has-text-centered">0.31 &plusmn; 0.39</td>
+            <td class="has-text-centered">100</td>
+            <td class="has-text-centered">11.09 &plusmn; 3.42</td>
           </tr>
         </tbody>
       </table>
