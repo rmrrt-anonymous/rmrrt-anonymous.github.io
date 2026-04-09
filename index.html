@@ -309,7 +309,7 @@
         <div class="column is-four-fifths">
           
           <div class="publication-video">
-            <iframe src="https://www.youtube.com/embed/bnW1Kop4qRw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://youtu.be/5ZlR7NS-O3E" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -326,7 +326,32 @@
         <div class="content has-text-justified">
           <!-- TODO: Replace with your paper abstract -->
           <p>
-            This paper presents a motion planning framework that unifies equality and inequality constraints into a single geometric formulation for sampling-based planning in high-dimensional robotic systems. Conventional sampling-based planners often exhibit inefficient exploration because they treat constraints separately: equality constraints via projection and inequality constraints via binary collision checking. To address this issue, we propose Riemannian Barrier Metric RRT (RMRRT), which unifies both constraints into a single geometric formulation. RMRRT constructs a Riemannian barrier metric on the tangent space of the equality manifold by integrating the null-space projection of the constraint Jacobian with the Hessian of a logarithmic barrier function. This metric guides the tree expansion by selecting steering directions that minimize the induced Riemannian norm, thereby naturally avoiding inequality constraints while strictly adhering to the equality manifold. Experimental results demonstrate that RMRRT achieves a 100% success rate across diverse constrained manipulation tasks in both simulation and real-world experiments, while reducing planning time relative to state-of-the-art constrained planners. Ablation studies further show that the proposed barrier metric reduces sample rejection and shortens path length. Experiment videos and source code are available at: https://rmrrt-anonymous.github.io
+            This paper presents a motion planning framework
+            that unifies equality and inequality constraints within a single
+            geometric formulation for sampling-based planning in high-
+            dimensional robotic systems. In conventional sampling-based
+            planners, equality constraints are typically enforced through
+            projection, whereas inequality constraints are handled separately
+            through binary validity checks such as collision testing, often
+            leading to inefficient exploration. To address this limitation,
+            we propose Riemannian Barrier Metric RRT (RMRRT), which
+            constructs a unified local geometry for planning on equality-
+            constrained manifolds. RMRRT first builds an ambient barrier
+            metric from inequality-sensitive barrier terms and then induces
+            a tangent-space metric via a G-orthogonal projection associated
+            with the equality constraints. The resulting tangent-space metric is
+            used consistently in both steering and nearest-neighbor selection,
+            biasing exploration away from nearby inequality boundaries
+            while preserving first-order equality consistency. Experimental
+            results show that RMRRT achieves a 100% success rate across
+            diverse constrained manipulation tasks in both simulation and
+            real-world settings, while reducing planning time relative to
+            representative constrained planning baselines. Ablation studies
+            further demonstrate that the proposed metric improves explo-
+            ration quality by reducing rejected samples and shortening path
+            length. Experiment videos and source code are available at:
+            https://rmrrt-anonymous.github.io 
+
           </p>
         </div>
       </div>
