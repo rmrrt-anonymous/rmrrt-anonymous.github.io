@@ -76,10 +76,9 @@
   <!-- TODO: Replace with your paper title and authors -->
   <title>RMRRT: Riemannian Barrier Metric RRT</title>
   
-   <!--
+  <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  -->
   
   <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
@@ -171,6 +170,7 @@
     "@type": "Organization",
     "name": "INSTITUTION_OR_LAB_NAME",
     "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
     "sameAs": [
       "https://twitter.com/YOUR_TWITTER_HANDLE",
       "https://github.com/YOUR_GITHUB_USERNAME"
@@ -269,7 +269,7 @@
                     <!-- TODO: Add your supplementary material PDF or remove this section -->
                     <span class="link-block">
 
-                      <a href="https://youtu.be/Y3ieilsI7JE" target="_blank"
+                      <a href="https://youtu.be/5ZlR7NS-O3E" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
                         <i class="fab fa-youtube"></i>
@@ -307,7 +307,7 @@
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <div class="publication-video">
-            <iframe src="https://www.youtube.com/embed/Y3ieilsI7JE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/5ZlR7NS-O3E" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -508,6 +508,60 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="content has-text-justified" style="margin-top:2.5rem;">
+      <p>
+        On the most challenging task (<b>Scenario 4</b>: 21-DoF triple-arm cooperative
+        manipulation through a narrow passage), we further report the number of planning
+        iterations required to reach a feasible solution. <b>RMRRT attains the lowest mean,
+        median, and maximum iteration counts</b> among all planners, and does so
+        <b>without any offline training</b>. LJCMP's learned latent sampler, although
+        sample-efficient on simpler scenarios, degrades on this hardest task and exhibits a
+        heavy-tailed iteration count (up to 2774), whereas RMRRT remains low and stable.
+      </p>
+    </div>
+    <div class="table-container" style="margin-top:1rem;">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+        <thead>
+          <tr>
+            <th>Planner</th>
+            <th class="has-text-centered">Mean iters</th>
+            <th class="has-text-centered">Median iters</th>
+            <th class="has-text-centered">Max iters</th>
+            <th class="has-text-centered">Offline training</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background-color:#e8f5e9; font-weight:bold;">
+            <td>RMRRT (ours)</td>
+            <td class="has-text-centered">13.6</td>
+            <td class="has-text-centered">2</td>
+            <td class="has-text-centered">181</td>
+            <td class="has-text-centered">none</td>
+          </tr>
+          <tr>
+            <td>LJCMP</td>
+            <td class="has-text-centered">77.0</td>
+            <td class="has-text-centered">7</td>
+            <td class="has-text-centered">2774</td>
+            <td class="has-text-centered">263 s</td>
+          </tr>
+          <tr>
+            <td>CBiRRT</td>
+            <td class="has-text-centered">59.1</td>
+            <td class="has-text-centered">28</td>
+            <td class="has-text-centered">237</td>
+            <td class="has-text-centered">none</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="has-text-centered" style="font-size:0.85rem; margin-top:0.5rem;">
+        Planning iterations on Scenario 4, averaged over 100 independent trials
+        (RMRRT, LJCMP); CBiRRT over 10 trials. Iteration counts are paradigm-specific and are
+        reported for characterization; end-to-end planning time and success rate are compared
+        in the table above.
+      </p>
     </div>
   </div>
 </section>
